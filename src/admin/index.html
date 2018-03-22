@@ -1,12 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>网易云音乐-后台管理页面</title>
+    <link rel="stylesheet" href="css/reboot.css">
+    <link rel="stylesheet" href="css/main.css">
 </head>
+
 <body>
-    
+    <header></header>
+
+    <main>
+        <aside class="control-bar">
+            <button class="add-song" id="add-song">添加歌曲</button>
+            <ul class="song-list">
+                <li><button>五音Jw - 明月天涯.mp3</button></li>
+                <li><button>周杰伦 - 公主病.mp3</button></li>
+                <li><button>周杰伦 - 扯.mp3</button></li>
+                <li><button>周杰伦 - 牛仔很忙.mp3</button></li>
+                <li><button>周杰伦 - 魔术先生.mp3</button></li>
+                <li><button>周杰伦 - 黑色毛衣.mp3</button></li>
+            </ul>
+            <div class="upload">
+                <button class="pickfiles">将文件退拽到此或点击上传</button>
+            </div>
+        </aside>
+
+        <section class="content">
+            <div class="form">
+                <input type="text" placeholder="歌曲名">
+                <input type="text" placeholder="歌手名">
+                <input type="text" placeholder="歌曲链接">
+                <button>确认</button>
+            </div>
+        </section>
+    </main>
+
+    <footer></footer>
 </body>
+
 </html>
