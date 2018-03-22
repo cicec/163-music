@@ -43,12 +43,11 @@
                         //    "key": "gogopher.jpg"
                         //  }
                         // 参考http://developer.qiniu.com/docs/v6/api/overview/up/response/simple-response.html
-
                         const domain = up.getOption('domain')
                         const response = JSON.parse(info.response)
                         const sourceLink = encodeURI(domain + response.key)
-                        console.log(sourceLink)
                         console.log('上传完毕')
+                        EventHub.emit('upload', { name: response.key, url: sourceLink })
                     },
                     Error: (up, err, errTip) => {
                         // 上传出错时,处理相关的事情
