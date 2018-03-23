@@ -1,0 +1,27 @@
+{
+  "name": "163-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./node_modules/.bin/webpack-dev-server",
+    "build": "./node_modules/.bin/webpack"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.0.0-beta.42",
+    "@babel/preset-env": "^7.0.0-beta.42",
+    "babel-loader": "^8.0.0-beta",
+    "css-loader": "^0.28.11",
+    "html-webpack-plugin": "^3.0.7",
+    "style-loader": "^0.20.3",
+    "webpack": "^4.2.0",
+    "webpack-cli": "^2.0.12",
+    "webpack-dev-server": "^3.1.1"
+  },
+  "dependencies": {
+    "jquery": "^3.3.1"
+  }
+}
