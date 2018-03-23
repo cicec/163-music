@@ -105,18 +105,18 @@ main .content {
     display: flex;
 }
 
-main .content .form {
+main .content .song-info {
     width: 60%;
     margin: auto;
 }
 
-main .content .form>input {
+main .content .song-info>input {
     width: 100%;
     padding: 8px 12px;
     margin: 20px 0;
 }
 
-main .content .form>button {
+main .content .song-info>button {
     width: 100%;
     color: rgb(39, 45, 71);
     background: rgb(241, 242, 247);
