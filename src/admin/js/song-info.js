@@ -47,7 +47,7 @@ const controller = {
         this.model = model
         this.view.render()
         this.bindEvents()
-        eventHub.on('upload', (data) => {
+        eventHub.on('uploaded', (data) => {
             this.view.render(data)
         })
     },
@@ -58,6 +58,7 @@ const controller = {
         })
         this.model.add(data).then(() => {
             this.view.render()
+            eventHub.emit('addsong')
         })
     },
     bindEvents() {

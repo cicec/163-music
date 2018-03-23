@@ -51,7 +51,7 @@ const controller = {
                     const response = JSON.parse(info.response)
                     const sourceLink = encodeURI(domain + response.key)
                     console.log('上传完毕')
-                    eventHub.emit('upload', { name: response.key, url: sourceLink })
+                    eventHub.emit('uploaded', { name: response.key, url: sourceLink })
                 },
                 Error: (up, err, errTip) => {
                     // 上传出错时,处理相关的事情
