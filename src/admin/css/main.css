@@ -34,7 +34,7 @@ header {
 }
 
 main {
-    height: 80%;
+    height: 90%;
     display: flex;
 }
 
@@ -55,11 +55,19 @@ main .control-bar .add-song {
     letter-spacing: 4px;
 }
 
+main .control-bar .list-wrap {
+    height: 72%;
+    overflow: hidden;
+}
+
 main .control-bar .song-list {
     list-style: none;
-    height: 72%;
+    width: calc(100% + 18px);
+    height: 100%;
     background: rgb(241, 242, 247);
     margin-bottom: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 main .control-bar .song-list>li {
@@ -123,8 +131,4 @@ main .content .song-info>button {
     font-weight: 900;
     padding: 12px 0;
     letter-spacing: 4px;
-}
-
-footer {
-    height: 10%;
 }
