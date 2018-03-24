@@ -1,15 +1,30 @@
 import AV from 'leancloud-storage'
 import eventHub from './event-hub'
 
+const model = {
+    data: [],
+    fetch() {
+        const query = new AV.Query('Song')
+        return query.find().then((response) => {
+            this.data = []
+            response.forEach((item) => {
+                this.data.push({ id: item.id, ...item.attributes })
+            })
+            return [...this.data]
+        })
+    }
+}
+
 const view = {
     el: document.getElementById('song-list'),
-    template: '<li>__name__</li>',
+    template: '<li id="__id__">__name__</li>',
     render(data) {
         let html = ''
         data.forEach((item) => {
-            html = html.concat(this.template.replace('__name__', item.name))
-            this.el.innerHTML = html
+            html = html.concat(this.template.replace('__name__', item.name)
+                .replace('__id__', item.id))
         })
+        this.el.innerHTML = html
     },
     active(el) {
         this.clearActive()
@@ -20,19 +35,6 @@ const view = {
         for (let i = 0; i < children.length; i++) {
             children[i].classList.remove('active')
         }
-    }
-}
-
-const model = {
-    data: [],
-    fetch() {
-        const query = new AV.Query('Song')
-        return query.find().then((response) => {
-            response.forEach((item) => {
-                this.data.push({ id: item.id, ...item.attributes })
-            })
-            return this.data
-        })
     }
 }
 
@@ -51,12 +53,15 @@ const controller = {
         })
     },
     bindEvents() {
-        eventHub.on('addsong', () => {
-            this.renderView()
-        })
+        eventHub.on('addsong', () => { this.renderView() })
+        eventHub.on('updatesong', () => { this.renderView() })
         this.view.el.addEventListener('click', (event) => {
             this.view.active(event.target)
-            eventHub.emit('selectedsong')
+            this.model.data.forEach((item) => {
+                if (item.id === event.target.id) {
+                    eventHub.emit('selectedsong', item)
+                }
+            })
         })
     }
 }

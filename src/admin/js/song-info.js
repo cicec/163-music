@@ -3,20 +3,28 @@ import eventHub from './event-hub'
 
 const model = {
     data: {},
-    add(data) {
+    setLocalData(data) {
+        this.data = data
+    },
+    create(data) {
         const Song = AV.Object.extend('Song')
         const song = new Song()
         song.set('name', data.name)
         song.set('singer', data.singer)
         song.set('url', data.url)
         return song.save().then((response) => {
-            this.data = {
-                id: response.id,
-                name: response.attributes.name,
-                singer: response.attributes.singer,
-                url: response.attributes.url
-            }
-            return response
+            this.data = { id: response.id, ...response.attributes }
+            return { ...this.data }
+        })
+    },
+    update(data) {
+        const song = AV.Object.createWithoutData('Song', this.data.id)
+        song.set('name', data.name)
+        song.set('singer', data.singer)
+        song.set('url', data.url)
+        return song.save().then((response) => {
+            this.data = { id: response.id, ...response.attributes }
+            return { ...this.data }
         })
     }
 }
@@ -42,6 +50,7 @@ const view = {
 const controller = {
     view: null,
     model: null,
+    state: 'create',
     init() {
         this.view = view
         this.model = model
@@ -51,20 +60,40 @@ const controller = {
             this.view.render(data)
         })
     },
-    addSong() {
+    getInputValue() {
         const data = {}
         view.keys.forEach((key) => {
             data[key] = this.view.el.querySelector(`input[name=${key}]`).value
         })
-        this.model.add(data).then(() => {
+        return data
+    },
+    addSong() {
+        const data = this.getInputValue()
+        this.model.create(data).then(() => {
             this.view.render()
             eventHub.emit('addsong')
         })
     },
+    modifySong() {
+        const data = this.getInputValue()
+        this.model.update(data).then(() => {
+            this.view.render()
+            eventHub.emit('updatesong')
+        })
+    },
     bindEvents() {
+        eventHub.on('selectedsong', (data) => {
+            this.model.setLocalData(data)
+            this.view.render(data)
+            this.state = 'update'
+        })
         this.view.el.addEventListener('submit', (event) => {
             event.preventDefault()
-            this.addSong()
+            if (this.state === 'create') {
+                this.addSong()
+            } else if (this.state === 'update') {
+                this.modifySong()
+            }
         })
     }
 }
