@@ -6,8 +6,8 @@ const view = {
     template: '<li>__name__</li>',
     render(data) {
         let html = ''
-        data.forEach((value) => {
-            html = html.concat(this.template.replace('__name__', value.attributes.name))
+        data.forEach((item) => {
+            html = html.concat(this.template.replace('__name__', item.name))
             this.el.innerHTML = html
         })
     },
@@ -24,12 +24,14 @@ const view = {
 }
 
 const model = {
-    data: null,
+    data: [],
     fetch() {
         const query = new AV.Query('Song')
         return query.find().then((response) => {
-            this.data = response
-            return response
+            response.forEach((item) => {
+                this.data.push({ id: item.id, ...item.attributes })
+            })
+            return this.data
         })
     }
 }
@@ -44,8 +46,8 @@ const controller = {
         this.bindEvents()
     },
     renderView() {
-        model.fetch().then((response) => {
-            this.view.render(response)
+        model.fetch().then((data) => {
+            this.view.render(data)
         })
     },
     bindEvents() {
@@ -54,6 +56,7 @@ const controller = {
         })
         this.view.el.addEventListener('click', (event) => {
             this.view.active(event.target)
+            eventHub.emit('selectedsong')
         })
     }
 }
