@@ -18,6 +18,7 @@ const model = {
 const view = {
     el: document.getElementById('song-list'),
     template: '<li id="__id__">__name__</li>',
+    addSongBtn: document.getElementById('add-song'),
     render(data) {
         let html = ''
         data.forEach((item) => {
@@ -48,13 +49,19 @@ const controller = {
         this.bindEvents()
     },
     renderView() {
-        model.fetch().then((data) => {
+        return model.fetch().then((data) => {
             this.view.render(data)
+            return data
         })
     },
     bindEvents() {
         eventHub.on('addsong', () => { this.renderView() })
         eventHub.on('updatesong', () => { this.renderView() })
+        eventHub.on('clickcreate', () => { this.view.clearActive() })
+        eventHub.on('uploaded', () => { this.view.clearActive() })
+        this.view.addSongBtn.addEventListener('click', () => {
+            eventHub.emit('clickcreate')
+        })
         this.view.el.addEventListener('click', (event) => {
             this.view.active(event.target)
             this.model.data.forEach((item) => {

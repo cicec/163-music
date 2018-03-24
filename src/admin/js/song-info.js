@@ -56,9 +56,6 @@ const controller = {
         this.model = model
         this.view.render()
         this.bindEvents()
-        eventHub.on('uploaded', (data) => {
-            this.view.render(data)
-        })
     },
     getInputValue() {
         const data = {}
@@ -72,16 +69,27 @@ const controller = {
         this.model.create(data).then(() => {
             this.view.render()
             eventHub.emit('addsong')
+            alert('添加歌曲成功！')
         })
     },
     modifySong() {
         const data = this.getInputValue()
-        this.model.update(data).then(() => {
-            this.view.render()
+        this.model.update(data).then((newData) => {
+            this.view.render(newData)
             eventHub.emit('updatesong')
+            alert('修改歌曲信息成功！')
         })
     },
     bindEvents() {
+        eventHub.on('clickcreate', () => {
+            this.model.setLocalData({})
+            this.view.render()
+            this.state = 'create'
+        })
+        eventHub.on('uploaded', (data) => {
+            this.view.render(data)
+            this.state = 'create'
+        })
         eventHub.on('selectedsong', (data) => {
             this.model.setLocalData(data)
             this.view.render(data)
