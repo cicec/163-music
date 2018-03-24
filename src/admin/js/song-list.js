@@ -2,15 +2,19 @@ import AV from 'leancloud-storage'
 import eventHub from './event-hub'
 
 const model = {
-    data: [],
+    data: {
+        songs: [],
+        selectedId: '',
+    },
+    setSelectedId(id) { this.data.selectedId = id },
     fetch() {
         const query = new AV.Query('Song')
         return query.find().then((response) => {
-            this.data = []
+            this.data.songs = []
             response.forEach((item) => {
-                this.data.push({ id: item.id, ...item.attributes })
+                this.data.songs.push({ id: item.id, ...item.attributes })
             })
-            return [...this.data]
+            return { ...this.data }
         })
     }
 }
@@ -21,11 +25,12 @@ const view = {
     addSongBtn: document.getElementById('add-song'),
     render(data) {
         let html = ''
-        data.forEach((item) => {
+        data.songs.forEach((item) => {
             html = html.concat(this.template.replace('__name__', item.name)
                 .replace('__id__', item.id))
         })
         this.el.innerHTML = html
+        if (data.selectedId) this.active(document.getElementById(data.selectedId))
     },
     active(el) {
         this.clearActive()
@@ -64,8 +69,9 @@ const controller = {
         })
         this.view.el.addEventListener('click', (event) => {
             this.view.active(event.target)
-            this.model.data.forEach((item) => {
+            this.model.data.songs.forEach((item) => {
                 if (item.id === event.target.id) {
+                    this.model.setSelectedId(item.id)
                     eventHub.emit('selectedsong', item)
                 }
             })
