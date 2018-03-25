@@ -1,4 +1,5 @@
 import './js/init-av'
+import './js/loading'
 import './js/upload'
 import './js/song-info'
 import './js/song-list'
