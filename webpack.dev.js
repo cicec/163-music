@@ -1,15 +1,32 @@
 const path = require('path')
+const { resolve } = require('path')
+const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-    mode: 'production',
+    mode: 'development',
     entry: {
-        index: './src/index/index.js',
-        admin: './src/admin/index.js'
+        index: [
+            'webpack-dev-server/client?http://localhost:8080',
+            'webpack/hot/only-dev-server',
+            './index/index.js',
+        ],
+        admin: [
+            'webpack-dev-server/client?http://localhost:8080/admin.html',
+            'webpack/hot/only-dev-server',
+            './admin/index.js',
+        ]
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'js/[name].js',
+        publicPath: '/'
+    },
+    context: resolve(__dirname, 'src'),
+    devtool: 'inline-source-map',
+    devServer: {
+        hot: true,
+        contentBase: resolve(__dirname, 'dist'),
         publicPath: '/'
     },
     module: {
@@ -34,16 +51,18 @@ module.exports = {
         }]
     },
     plugins: [
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NamedModulesPlugin(),
         new HtmlWebpackPlugin({
             path: 'dist',
             filename: 'index.html',
-            template: './src/index/index.html',
+            template: './index/index.html',
             chunks: ['index'],
         }),
         new HtmlWebpackPlugin({
             path: 'dist',
             filename: 'admin.html',
-            template: './src/admin/index.html',
+            template: './admin/index.html',
             chunks: ['admin'],
         })
     ],
