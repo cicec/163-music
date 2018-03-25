@@ -1,7 +1,5 @@
-import './js/init-av'
-import './js/upload'
-import './js/song-info'
-import './js/song-list'
+import './App'
 
-import './css/reboot.css'
-import './css/main.css'
+if (module.hot) {
+    module.hot.accept('./App.js', () => {})
+}
