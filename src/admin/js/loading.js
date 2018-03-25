@@ -1,25 +1,26 @@
-import eventHub from './event-hub'
+import eventHub from './core/event-hub'
+import { Model, View, Controller } from './core/base'
 
-const model = {}
+const model = new Model({ init() { this.save({ isLoading: false }) } })
 
-const view = {
+const view = new View({
     el: document.getElementById('loading'),
-    show() { this.el.classList.add('loading') },
-    hidden() { this.el.classList.remove('loading') }
-}
-
-const controller = {
-    model: null,
-    view: null,
-    init() {
-        this.model = model
-        this.view = view
-        this.bindEvent()
-    },
-    bindEvent() {
-        eventHub.on('toupload', () => { this.view.show() })
-        eventHub.on('uploaded', () => { this.view.hidden() })
+    render(data) {
+        if (data.isLoading) {
+            this.el.classList.add('loading')
+        } else {
+            this.el.classList.remove('loading')
+        }
     }
-}
+})
+
+const controller = new Controller({
+    model,
+    view,
+    bindEvents() {
+        eventHub.on('toupload', () => { this.model.save({ isLoading: true }) })
+        eventHub.on('uploaded', () => { this.model.save({ isLoading: false }) })
+    }
+})
 
 controller.init()

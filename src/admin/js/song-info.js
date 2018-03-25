@@ -1,35 +1,33 @@
 import AV from 'leancloud-storage'
-import eventHub from './event-hub'
+import eventHub from './core/event-hub'
+import { Model, View, Controller } from './core/base'
 
-const model = {
-    data: {},
-    setLocalData(data) {
-        this.data = data
-    },
-    create(data) {
+const model = new Model({
+    createSong(data) {
         const Song = AV.Object.extend('Song')
         const song = new Song()
         song.set('name', data.name)
         song.set('singer', data.singer)
         song.set('url', data.url)
         return song.save().then((response) => {
-            this.data = { id: response.id, ...response.attributes }
-            return { ...this.data }
+            this.save()
+            const newData = { id: response.id, ...response.attributes }
+            return { ...newData }
         })
     },
-    update(data) {
+    updateSong(data) {
         const song = AV.Object.createWithoutData('Song', this.data.id)
         song.set('name', data.name)
         song.set('singer', data.singer)
         song.set('url', data.url)
         return song.save().then((response) => {
-            this.data = { id: response.id, ...response.attributes }
-            return { ...this.data }
+            this.save({ id: response.id, ...response.attributes })
+            return { ...this.fetch() }
         })
     }
-}
+})
 
-const view = {
+const view = new View({
     el: document.getElementById('song-info'),
     template: `
             <input type="text" name="name" placeholder="歌曲名" value="__name__">
@@ -45,54 +43,43 @@ const view = {
         })
         this.el.innerHTML = html
     }
-}
+})
 
-const controller = {
-    view: null,
-    model: null,
-    state: 'create',
-    init() {
-        this.view = view
-        this.model = model
-        this.view.render()
-        this.bindEvents()
-    },
+const controller = new Controller({
+    view,
+    model,
     getInputValue() {
         const data = {}
-        view.keys.forEach((key) => {
+        this.view.keys.forEach((key) => {
             data[key] = this.view.el.querySelector(`input[name=${key}]`).value
         })
         return data
     },
     addSong() {
         const data = this.getInputValue()
-        this.model.create(data).then(() => {
-            this.view.render()
+        this.model.createSong(data).then(() => {
             eventHub.emit('addsong')
             alert('添加歌曲成功！')
         })
     },
     modifySong() {
         const data = this.getInputValue()
-        this.model.update(data).then((newData) => {
-            this.view.render(newData)
+        this.model.updateSong(data).then(() => {
             eventHub.emit('updatesong')
             alert('修改歌曲信息成功！')
         })
     },
     bindEvents() {
         eventHub.on('clickcreate', () => {
-            this.model.setLocalData({})
-            this.view.render()
+            this.model.save()
             this.state = 'create'
         })
         eventHub.on('uploaded', (data) => {
-            this.view.render(data)
+            this.model.save(data)
             this.state = 'create'
         })
         eventHub.on('selectedsong', (data) => {
-            this.model.setLocalData(data)
-            this.view.render(data)
+            this.model.save(data)
             this.state = 'update'
         })
         this.view.el.addEventListener('submit', (event) => {
@@ -104,6 +91,6 @@ const controller = {
             }
         })
     }
-}
+})
 
 controller.init()

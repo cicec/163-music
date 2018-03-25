@@ -1,21 +1,17 @@
 import './lib/moxie'
 import './lib/plupload'
 import './lib/qiniu'
-import eventHub from './event-hub'
+import eventHub from './core/event-hub'
+import { Model, View, Controller } from './core/base'
 
-const view = { el: '#upload' }
+const model = new Model()
 
-const model = {}
+const view = new View({ el: '#upload' })
 
-const controller = {
-    view: null,
-    model: null,
+const controller = new Controller({
+    model,
+    view,
     init() {
-        this.view = view
-        this.model = model
-        this.initQiniu()
-    },
-    initQiniu() {
         const uploader = Qiniu.uploader({
             runtimes: 'html5', // 上传模式,依次退化
             browse_button: 'pickfiles', // 上传选择的点选按钮，**必需**
@@ -63,6 +59,6 @@ const controller = {
             }
         })
     }
-}
+})
 
 controller.init()

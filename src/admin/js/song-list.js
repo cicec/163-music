@@ -1,37 +1,31 @@
 import AV from 'leancloud-storage'
-import eventHub from './event-hub'
+import eventHub from './core/event-hub'
+import { Model, View, Controller } from './core/base'
 
-const model = {
-    data: {
-        songs: [],
-        selectedId: '',
-    },
-    setSelectedId(id) { this.data.selectedId = id },
-    fetch() {
+const model = new Model({
+    init() { this.fetchSongs() },
+    fetchSongs() {
         const query = new AV.Query('Song')
         return query.find().then((response) => {
-            this.data.songs = []
+            const data = { ...this.fetch() }
+            data.songs = []
             response.forEach((item) => {
-                this.data.songs.push({ id: item.id, ...item.attributes })
+                data.songs.push({ id: item.id, ...item.attributes })
             })
-            return { ...this.data }
+            this.save(data)
+            return data
         })
+    },
+    setSelectedId(id = '') {
+        const { songs } = this.fetch()
+        this.save({ selectedId: id, songs })
     }
-}
+})
 
-const view = {
+const view = new View({
     el: document.getElementById('song-list'),
     template: '<li id="__id__">__name__</li>',
     addSongBtn: document.getElementById('add-song'),
-    render(data) {
-        let html = ''
-        data.songs.forEach((item) => {
-            html = html.concat(this.template.replace('__name__', item.name)
-                .replace('__id__', item.id))
-        })
-        this.el.innerHTML = html
-        if (data.selectedId) this.active(document.getElementById(data.selectedId))
-    },
     active(el) {
         this.clearActive()
         el.classList.add('active')
@@ -41,42 +35,38 @@ const view = {
         for (let i = 0; i < children.length; i++) {
             children[i].classList.remove('active')
         }
-    }
-}
-
-const controller = {
-    view: null,
-    model: null,
-    init() {
-        this.view = view
-        this.model = model
-        this.renderView()
-        this.bindEvents()
     },
-    renderView() {
-        return model.fetch().then((data) => {
-            this.view.render(data)
-            return data
+    render(data) {
+        let html = ''
+        data.songs.forEach((item) => {
+            html = html.concat(this.template.replace('__name__', item.name)
+                .replace('__id__', item.id))
         })
-    },
+        this.el.innerHTML = html
+        if (data.selectedId) this.active(document.getElementById(data.selectedId))
+    }
+})
+
+const controller = new Controller({
+    model,
+    view,
     bindEvents() {
-        eventHub.on('addsong', () => { this.renderView() })
-        eventHub.on('updatesong', () => { this.renderView() })
-        eventHub.on('clickcreate', () => { this.view.clearActive() })
-        eventHub.on('uploaded', () => { this.view.clearActive() })
+        eventHub.on('addsong', () => { this.model.fetchSongs() })
+        eventHub.on('updatesong', () => { this.model.fetchSongs() })
+        eventHub.on('clickcreate', () => { this.model.setSelectedId() })
+        eventHub.on('uploaded', () => { this.model.setSelectedId() })
         this.view.addSongBtn.addEventListener('click', () => {
             eventHub.emit('clickcreate')
         })
         this.view.el.addEventListener('click', (event) => {
-            this.view.active(event.target)
-            this.model.data.songs.forEach((item) => {
+            this.model.fetch().songs.forEach((item) => {
                 if (item.id === event.target.id) {
                     this.model.setSelectedId(item.id)
                     eventHub.emit('selectedsong', item)
                 }
             })
         })
-    }
-}
+    },
+})
 
 controller.init()
