@@ -34,7 +34,6 @@ const controller = new Controller({
                 },
                 UploadProgress: (up, file) => {
                     // 每个文件上传时,处理相关的事情
-                    console.log('上传中')
                 },
                 FileUploaded: (up, file, info) => {
                     // 每个文件上传成功后,处理相关的事情
@@ -47,8 +46,8 @@ const controller = new Controller({
                     const domain = up.getOption('domain')
                     const response = JSON.parse(info.response)
                     const sourceLink = encodeURI(domain + response.key)
-                    console.log('上传完毕')
-                    eventHub.emit('uploaded', { name: response.key, url: sourceLink })
+                    const songInfo = response.key.split('.')[0].split(' - ')
+                    eventHub.emit('uploaded', { name: songInfo[1], singer: songInfo[0], url: sourceLink })
                 },
                 Error: (up, err, errTip) => {
                     // 上传出错时,处理相关的事情

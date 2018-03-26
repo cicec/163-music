@@ -48,22 +48,21 @@ const view = new View({
 const controller = new Controller({
     view,
     model,
+    state: 'create',
     getInputValue() {
         const data = {}
         this.view.keys.forEach((key) => {
-            data[key] = this.view.el.querySelector(`input[name=${key}]`).value
+            data[key] = this.view.el.querySelector(`input[name=${key}]`).value.trim()
         })
         return data
     },
-    addSong() {
-        const data = this.getInputValue()
+    addSong(data) {
         this.model.createSong(data).then(() => {
             eventHub.emit('addsong')
             alert('添加歌曲成功！')
         })
     },
-    modifySong() {
-        const data = this.getInputValue()
+    modifySong(data) {
         this.model.updateSong(data).then(() => {
             eventHub.emit('updatesong')
             alert('修改歌曲信息成功！')
@@ -84,10 +83,13 @@ const controller = new Controller({
         })
         this.view.el.addEventListener('submit', (event) => {
             event.preventDefault()
-            if (this.state === 'create') {
-                this.addSong()
-            } else if (this.state === 'update') {
-                this.modifySong()
+            const data = this.getInputValue()
+            if (Object.keys(data).every(key => data[key])) {
+                if (this.state === 'create') {
+                    this.addSong(data)
+                } else if (this.state === 'update') {
+                    this.modifySong(data)
+                }
             }
         })
     }

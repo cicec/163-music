@@ -39,7 +39,7 @@ const view = new View({
     render(data) {
         let html = ''
         data.songs.forEach((item) => {
-            html = html.concat(this.template.replace('__name__', item.name)
+            html = html.concat(this.template.replace('__name__', `${item.singer} - ${item.name}`)
                 .replace('__id__', item.id))
         })
         this.el.innerHTML = html
