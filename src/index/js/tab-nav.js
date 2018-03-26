@@ -1,4 +1,5 @@
 import { Model, View, Controller } from './core/base'
+import eventHub from './core/event-hub'
 
 const model = new Model({
     init() {
@@ -34,6 +35,7 @@ const controller = new Controller({
                 }
                 const data = this.model.fetch()
                 this.model.save({ ...data, current: data.tabs[index] })
+                eventHub.emit('toggletab', { current: data.tabs[index] })
             }
         })
     }
