@@ -53,6 +53,7 @@ header>nav>ul>li {
     height: .4rem;
     line-height: .4rem;
     font-size: .15rem;
+    cursor: pointer;
 }
 
 header>nav>ul>li.active {
