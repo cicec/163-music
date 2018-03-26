@@ -131,9 +131,12 @@ header>nav>ul>li.active::after {
     justify-content: space-between;
 }
 
+.remd-lists>ul>li {
+    flex: 0 0 32.8%;
+}
+
 .remd-lists>ul>li>a {
     margin-top: 0.14rem;
-    width: 1.23rem;
     display: block;
     position: relative;
 }
@@ -148,7 +151,7 @@ header>nav>ul>li.active::after {
 }
 
 .remd-lists>ul>li>a>img {
-    width: 1.23rem;
+    width: 100%;
 }
 
 .remd-lists>ul>li>a>img::after {
