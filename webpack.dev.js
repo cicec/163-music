@@ -11,6 +11,11 @@ module.exports = {
             'webpack/hot/only-dev-server',
             './index/index.js',
         ],
+        song: [
+            'webpack-dev-server/client?http://localhost:8080/song.html',
+            'webpack/hot/only-dev-server',
+            './song/index.js',
+        ],
         admin: [
             'webpack-dev-server/client?http://localhost:8080/admin.html',
             'webpack/hot/only-dev-server',
@@ -58,6 +63,12 @@ module.exports = {
             filename: 'index.html',
             template: './index/index.html',
             chunks: ['index'],
+        }),
+        new HtmlWebpackPlugin({
+            path: 'dist',
+            filename: 'song.html',
+            template: './song/index.html',
+            chunks: ['song'],
         }),
         new HtmlWebpackPlugin({
             path: 'dist',

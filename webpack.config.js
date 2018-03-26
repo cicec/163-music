@@ -5,7 +5,8 @@ module.exports = {
     mode: 'production',
     entry: {
         index: './src/index/index.js',
-        admin: './src/admin/index.js'
+        admin: './src/admin/index.js',
+        song: './src/song/index.js'
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -39,6 +40,12 @@ module.exports = {
             filename: 'index.html',
             template: './src/index/index.html',
             chunks: ['index'],
+        }),
+        new HtmlWebpackPlugin({
+            path: 'dist',
+            filename: 'song.html',
+            template: './src/song/index.html',
+            chunks: ['song'],
         }),
         new HtmlWebpackPlugin({
             path: 'dist',

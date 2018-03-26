@@ -1,0 +1,72 @@
+header {
+    height: 1.04rem;
+}
+
+header .header-top {
+    color: rgb(255, 255, 255);
+    background: #d43c33;
+    height: .64rem;
+    padding: 0 .1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+}
+
+header .header-top .logo {
+    width: 1.42rem;
+    height: .25rem;
+}
+
+header .header-top .download {
+    height: .3rem;
+    font-size: .15rem;
+    padding: 0 .1rem;
+    line-height: .28rem;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, .6);
+    border-radius: 0.15rem;
+    display: block;
+}
+
+header>nav {
+    background: #ffffff;
+    box-shadow: 0 3px 4px -4px #cccccc;
+    position: fixed;
+    top: .64rem;
+    left: 0;
+    right: 0;
+    z-index: 10;
+}
+
+header>nav>ul {
+    display: flex;
+}
+
+header>nav>ul>li {
+    flex: 0 0 33.333%;
+    text-align: center;
+    height: .4rem;
+    line-height: .4rem;
+    font-size: .15rem;
+}
+
+header>nav>ul>li.active {
+    color: #d33a31;
+    position: relative;
+}
+
+header>nav>ul>li.active::after {
+    content: '';
+    width: 100%;
+    background: #d33a31;
+    height: .04rem;
+    position: absolute;
+    bottom: -.01rem;
+    left: 0;
+    transform: scale(0.56, 0.5);
+}

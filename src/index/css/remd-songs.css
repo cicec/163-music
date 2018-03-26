@@ -1,0 +1,135 @@
+.scetion-title {
+    font-weight: normal;
+    font-size: .17rem;
+    padding-left: .09rem;
+    position: relative;
+}
+
+.scetion-title::after {
+    content: '';
+    width: .02rem;
+    height: .16rem;
+    background: #d33a31;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}
+
+.remd-lists {
+    margin-top: .2rem;
+}
+
+.remd-lists>ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.remd-lists>ul>li {
+    flex: 0 0 32.8%;
+}
+
+.remd-lists>ul>li>a {
+    margin-top: .14rem;
+    display: block;
+    position: relative;
+}
+
+.remd-lists>ul>li>a>span {
+    color: #ffffff;
+    position: absolute;
+    top: .02rem;
+    right: .05rem;
+    font-size: .12rem;
+    z-index: 1;
+}
+
+.remd-lists>ul>li>a>img {
+    width: 100%;
+}
+
+.remd-lists>ul>li>a>img::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.08);
+}
+
+.remd-lists>ul>li>a>p {
+    padding: 6px 2px 0 6px;
+    font-size: .13rem;
+    line-height: 1.2;
+}
+
+.new-songs {
+    margin-top: .4rem;
+}
+
+.new-songs>ul {
+    margin-top: .14rem;
+}
+
+.new-songs>ul>li {
+    margin: 0 .1rem;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, .05);
+}
+
+.new-songs>ul>li>a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.new-songs>ul>li>a .song-info>h4 {
+    font-size: .17rem;
+    font-weight: normal;
+}
+
+.new-songs>ul>li>a .song-info>span {
+    color: #888888;
+    font-size: .12rem;
+}
+
+.new-songs>ul>li>a .play-icon {
+    width: .22rem;
+    height: .22rem;
+    background-position: -.24rem 0;
+}
+
+.remd-songs-footer {
+    height: 2rem;
+    margin-top: .04rem;
+    padding-top: .64rem;
+    background: url('http://s3.music.126.net/m/s/img/recommand_bg_2x.png') no-repeat;
+    background-size: contain;
+}
+
+.remd-songs-footer .logo {
+    width: 2.3rem;
+    height: .44rem;
+    margin: auto;
+}
+
+.remd-songs-footer .open-app {
+    width: 3rem;
+    color: #d33a31;
+    margin: .15rem auto .05rem;
+    font-size: .16rem;
+    text-align: center;
+    line-height: .38rem;
+    border: 1px solid #d33a31;
+    border-radius: .18rem;
+    display: block;
+}
+
+.remd-songs-footer .copyright {
+    color: #888888;
+    font-size: .12rem;
+    line-height: .16rem;
+    text-align: center;
+}

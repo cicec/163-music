@@ -1,0 +1,76 @@
+.hot-songs-header {
+    height: 1.46rem;
+    background: url('//s3.music.126.net/m/s/img/hot_music_bg_2x.jpg') no-repeat;
+    background-size: contain;
+    padding-left: .2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+.hot-songs-header .title {
+    width: 1.42rem;
+    height: .67rem;
+    background: url('//s3.music.126.net/m/s/img/index_icon_2x.png') no-repeat;
+    background-size: 1.66rem .97rem;
+    background-position: -.24rem -.3rem;
+    z-index: 10;
+}
+
+.hot-songs-header .update-time {
+    display: block;
+    margin-top: .1rem;
+    color: #ffffff;
+    font-size: .12rem;
+    transform: scale(.91);
+    transform-origin: top left;
+}
+
+.hot-songs>ul>li {
+    margin: 0 .1rem;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, .05);
+}
+
+.hot-songs>ul>li>a {
+    display: flex;
+    align-items: center;
+}
+
+.hot-songs>ul>li>a .rank {
+    flex: 0 0 .28rem;
+    color: #999999;
+    font-size: .17rem;
+}
+
+.hot-songs>ul>li>a .rank.hottest {
+    color: #df3436;
+}
+
+.hot-songs>ul>li>a .song-info {
+    flex: 1;
+}
+
+.hot-songs>ul>li>a .song-info>h4 {
+    font-size: .17rem;
+    font-weight: normal;
+}
+
+.hot-songs>ul>li>a .song-info>span {
+    color: #888888;
+    font-size: .12rem;
+}
+
+.hot-songs>ul>li>a .play-icon {
+    width: .22rem;
+    height: .22rem;
+    background-position: -.24rem 0;
+}
+
+.hot-songs-footer {
+    height: .55rem;
+    color: #999999;
+    text-align: center;
+    line-height: .55rem;
+}

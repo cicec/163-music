@@ -21,16 +21,12 @@ const view = new View({
     el: document.getElementById('new-songs-list'),
     template: `
         <li id="{{ id }}">
-            <a href="{{ url }}">
+            <a href="./song.html?id={{ id }}">
                 <div class="song-info">
                     <h4>{{ name }}</h4>
                     <span class="song-info">{{ singer }} - {{ name }}</span>
                 </div>
-                <span class="play-icon">
-                    <svg class="icon" aria-hidden="true">
-                        <use xlink:href="#icon-play"></use>
-                    </svg>
-                </span>
+                <span class="play-icon sprite"></span>
             </a>
         </li>
     `,
