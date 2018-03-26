@@ -3,7 +3,7 @@ html {
 }
 
 body {
-    font: 0.14rem/1.5 Helvetica, sans-serif;
+    font: .14rem/1.5 Helvetica, sans-serif;
     color: #333333;
     background: #fcfcfd;
 }
@@ -15,6 +15,7 @@ ul {
 }
 
 h2,
+h4,
 p,
 a {
     margin: 0;
@@ -30,17 +31,25 @@ a:visited {
     text-decoration: none;
 }
 
+.icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: -.15em;
+    fill: currentColor;
+    overflow: hidden;
+}
+
 .scetion-title {
     font-weight: normal;
-    font-size: 0.17rem;
-    padding-left: 0.09rem;
+    font-size: .17rem;
+    padding-left: .09rem;
     position: relative;
 }
 
 .scetion-title::after {
     content: '';
-    width: 0.02rem;
-    height: 0.16rem;
+    width: .02rem;
+    height: .16rem;
     background: #d33a31;
     position: absolute;
     top: 50%;
@@ -55,8 +64,8 @@ header {
 header .header-top {
     color: rgb(255, 255, 255);
     background: #d43c33;
-    height: 0.64rem;
-    padding: 0 0.1rem;
+    height: .64rem;
+    padding: 0 .1rem;
     position: fixed;
     top: 0;
     left: 0;
@@ -69,16 +78,16 @@ header .header-top {
 
 header .header-top .logo {
     width: 1.42rem;
-    height: 0.25rem;
+    height: .25rem;
 }
 
 header .header-top .download {
-    height: 0.3rem;
-    font-size: 0.15rem;
-    padding: 0 0.1rem;
-    line-height: 0.28rem;
+    height: .3rem;
+    font-size: .15rem;
+    padding: 0 .1rem;
+    line-height: .28rem;
     color: #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(255, 255, 255, .6);
     border-radius: 0.15rem;
     display: block;
 }
@@ -87,7 +96,7 @@ header>nav {
     background: #ffffff;
     box-shadow: 0 3px 4px -4px #cccccc;
     position: fixed;
-    top: 0.64rem;
+    top: .64rem;
     left: 0;
     right: 0;
     z-index: 10;
@@ -100,9 +109,9 @@ header>nav>ul {
 header>nav>ul>li {
     flex: 0 0 33.333%;
     text-align: center;
-    height: 0.4rem;
-    line-height: 0.4rem;
-    font-size: 0.15rem;
+    height: .4rem;
+    line-height: .4rem;
+    font-size: .15rem;
 }
 
 header>nav>ul>li.active {
@@ -114,15 +123,15 @@ header>nav>ul>li.active::after {
     content: '';
     width: 100%;
     background: #d33a31;
-    height: 0.04rem;
+    height: .04rem;
     position: absolute;
-    bottom: -0.01rem;
+    bottom: -.01rem;
     left: 0;
     transform: scale(0.56, 0.5);
 }
 
 .remd-lists {
-    margin-top: 0.2rem;
+    margin-top: .2rem;
 }
 
 .remd-lists>ul {
@@ -136,7 +145,7 @@ header>nav>ul>li.active::after {
 }
 
 .remd-lists>ul>li>a {
-    margin-top: 0.14rem;
+    margin-top: .14rem;
     display: block;
     position: relative;
 }
@@ -144,9 +153,9 @@ header>nav>ul>li.active::after {
 .remd-lists>ul>li>a>span {
     color: #ffffff;
     position: absolute;
-    top: 0.02rem;
-    right: 0.05rem;
-    font-size: 0.12rem;
+    top: .02rem;
+    right: .05rem;
+    font-size: .12rem;
     z-index: 1;
 }
 
@@ -166,10 +175,74 @@ header>nav>ul>li.active::after {
 
 .remd-lists>ul>li>a>p {
     padding: 6px 2px 0 6px;
-    font-size: 0.13rem;
+    font-size: .13rem;
     line-height: 1.2;
 }
 
 .new-songs {
-    margin-top: 0.2rem;
+    margin-top: .2rem;
+}
+
+.new-songs>ul {
+    margin-top: .14rem;
+}
+
+.new-songs>ul>li {
+    margin: 0 .1rem;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, .05);
+}
+
+.new-songs>ul>li>a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.new-songs>ul>li>a .song-info>h4 {
+    font-size: .17rem;
+    font-weight: normal;
+}
+
+.new-songs>ul>li>a .song-info>span {
+    color: #888888;
+    font-size: .12rem;
+}
+
+.new-songs>ul>li>a .play-icon {
+    font-size: .24rem;
+    color: #bbbbbb;
+}
+
+footer {
+    height: 2rem;
+    margin-top: .04rem;
+    padding-top: .64rem;
+    background: url('http://s3.music.126.net/m/s/img/recommand_bg_2x.png') no-repeat;
+    background-size: contain;
+}
+
+footer .logo {
+    width: 2.3rem;
+    height: .44rem;
+    margin: auto;
+}
+
+footer .open-app {
+    width: 3rem;
+    color: #d33a31;
+    margin: .15rem auto .05rem;
+    font-size: .16rem;
+    text-align: center;
+    line-height: .38rem;
+    border: 1px solid #d33a31;
+    border-radius: .18rem;
+    display: block;
+}
+
+footer .copyright {
+    color: #888888;
+    font-size: .12rem;
+    line-height: .16rem;
+    text-align: center;
 }
