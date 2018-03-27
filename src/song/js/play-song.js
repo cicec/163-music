@@ -28,10 +28,10 @@ const model = new Model({
 const view = new View({
     el: document.getElementById('player'),
     template: `
-        <div class="player">
+        <div id="player-inner" class="player running">
             <audio id="audio" src="{{ url }}"></audio>
             <img src="http://p1.music.126.net/K3S3sw_o7gs37CR-ew1toA==/109951163208886843.webp" class="cover absolute-center"></img>
-            <button id="play-btn" class="play-btn absolute-center">
+            <button id="play-btn" class="play-btn absolute-center hidden">
                 <svg class="icon" aria-hidden="true">
                     <use xlink:href="#icon-play1"></use>
                 </svg>
@@ -67,9 +67,17 @@ const controller = new Controller({
     model,
     view,
     bindEvents() {
+        const playerInner = this.view.el.querySelector('#player-inner')
         const playBtn = this.view.el.querySelector('#play-btn')
-        playBtn.addEventListener('click', () => {
+        playerInner.addEventListener('click', () => {
             const data = this.model.fetch()
+            if (data.isPlaying) {
+                playerInner.classList.remove('running')
+                playBtn.classList.remove('hidden')
+            } else {
+                playerInner.classList.add('running')
+                playBtn.classList.add('hidden')
+            }
             this.model.save({ ...data, isPlaying: !data.isPlaying })
         })
     }

@@ -15,6 +15,10 @@ body {
     overflow: hidden;
 }
 
+.hidden {
+    display: none;
+}
+
 .absolute-center {
     position: absolute;
     top: 50%;
@@ -58,25 +62,40 @@ header .logo {
     left: .1rem;
 }
 
-main .player {
-    width: 2.96rem;
-    height: 2.96rem;
-    margin: auto;
-    background-image: url('//s3.music.126.net/m/s/img/disc.png');
-    background-size: contain;
-    position: relative;
-    display: flex;
-}
-
-main .player::after {
+main::after {
     content: '';
     width: .96rem;
     height: 1.37rem;
     background: url('//s3.music.126.net/m/s/img/needle.png');
     background-size: contain;
     position: absolute;
-    top: -.7rem;
-    left: 1.33rem;
+    top: 0;
+    left: 50%;
+    transform: translateX(-20%);
+}
+
+main .player {
+    width: 2.96rem;
+    height: 2.96rem;
+    margin: auto;
+    background-image: url('//s3.music.126.net/m/s/img/disc.png');
+    background-size: contain;
+    display: flex;
+    animation: rotating 20s linear infinite;
+    animation-play-state: paused;
+}
+
+main .player.running {
+    animation-play-state: running;
+}
+
+@keyframes rotating {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 main .player .cover {
