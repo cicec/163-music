@@ -33,14 +33,12 @@ class Controller {
     constructor(options) {
         this.model = null
         this.view = null
-        this.bindEvents = () => {}
         Object.assign(this, options)
     }
 
     init() {
         this.model.addListener((data) => { this.view.render(data) })
-        this.bindEvents()
-        this.model.init()
+        return this.model.init()
     }
 }
 

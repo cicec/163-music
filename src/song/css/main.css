@@ -1,0 +1,104 @@
+html {
+    font-size: 100px;
+}
+
+body {
+    font: .14rem/1.5 Helvetica, sans-serif;
+    color: #333;
+}
+
+.icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+}
+
+.absolute-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.bg {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.1);
+    filter: blur(16px);
+}
+
+.bg::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.56);
+}
+
+.bg .bg-img {
+    height: 100vh;
+}
+
+header {
+    height: .7rem;
+}
+
+header .logo {
+    width: 1rem;
+    height: .17rem;
+    background: url('//s3.music.126.net/m/s/img/logo.png');
+    background-size: 1rem auto;
+    position: absolute;
+    top: .12rem;
+    left: .1rem;
+}
+
+main .player {
+    width: 2.96rem;
+    height: 2.96rem;
+    margin: auto;
+    background-image: url('//s3.music.126.net/m/s/img/disc.png');
+    background-size: contain;
+    position: relative;
+    display: flex;
+}
+
+main .player::after {
+    content: '';
+    width: .96rem;
+    height: 1.37rem;
+    background: url('//s3.music.126.net/m/s/img/needle.png');
+    background-size: contain;
+    position: absolute;
+    top: -.7rem;
+    left: 1.33rem;
+}
+
+main .player .cover {
+    width: 1.84rem;
+    height: 1.84rem;
+    margin: auto;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+main .player .play-btn {
+    margin: auto;
+    width: .56rem;
+    height: .56rem;
+    color: #ffffff;
+    font-size: .28rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    border: 1px solid #cccccc;
+    outline: none;
+}
+
+main .player .play-btn>svg {
+    transform: translateX(.02rem);
+}
