@@ -44,6 +44,7 @@ const view = new View({
             <span class="singer">{{ singer }}</span>
             </span>
         </div>
+        <div class="lyrics">暂无歌词</div>
     `,
     render(data = {}) {
         if (!this.el.innerHTML) {

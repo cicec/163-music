@@ -32,6 +32,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%) scale(1.1);
     filter: blur(16px);
+    z-index: -10;
 }
 
 .bg::after {
@@ -120,4 +121,55 @@ main .player .play-btn {
 
 main .player .play-btn>svg {
     transform: translateX(.02rem);
+}
+
+main .song-info {
+    margin-top: .25rem;
+    color: #fefefe;
+    text-align: center;
+}
+
+main .song-info .name {
+    font-size: .18rem;
+}
+
+main .song-info .singer {
+    font-size: .16rem;
+    color: hsla(0, 0%, 100%, .6);
+}
+
+main .lyrics {
+    font-size: .16rem;
+    color: hsla(0, 0%, 100%, .6);
+    text-align: center;
+    margin-top: .14rem;
+}
+
+footer {
+    position: absolute;
+    bottom: .1rem;
+    left: 0;
+    right: 0;
+    display: flex;
+}
+
+footer>span {
+    flex: 1 1 auto;
+    font-size: .18rem;
+    height: .4rem;
+    line-height: .4rem;
+    text-align: center;
+    border-radius: .2rem;
+    margin: 0 .1rem;
+}
+
+footer>span.open {
+    color: #d33a31;
+    border: 1px solid #d33a31;
+}
+
+footer>span.download {
+    color: #ffffff;
+    background: #d33a31;
+    margin-left: 0;
 }
