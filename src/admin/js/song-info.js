@@ -9,6 +9,7 @@ const model = new Model({
         song.set('name', data.name)
         song.set('singer', data.singer)
         song.set('url', data.url)
+        song.set('cover', data.cover)
         return song.save().then((response) => {
             this.save()
             const newData = { id: response.id, ...response.attributes }
@@ -20,6 +21,7 @@ const model = new Model({
         song.set('name', data.name)
         song.set('singer', data.singer)
         song.set('url', data.url)
+        song.set('cover', data.cover)
         return song.save().then((response) => {
             this.save({ id: response.id, ...response.attributes })
             return { ...this.fetch() }
@@ -33,9 +35,10 @@ const view = new View({
             <input type="text" name="name" placeholder="歌曲名" value="__name__">
             <input type="text" name="singer" placeholder="歌手名" value="__singer__">
             <input type="text" name="url" placeholder="歌曲链接" value="__url__">
+            <input type="text" name="cover" placeholder="歌曲封面" value="__cover__">
             <button>确认</button>
     `,
-    keys: ['name', 'singer', 'url'],
+    keys: ['name', 'singer', 'url', 'cover'],
     render(data = {}) {
         let html = this.template
         this.keys.forEach((key) => {
