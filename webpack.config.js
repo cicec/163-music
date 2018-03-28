@@ -5,7 +5,7 @@ module.exports = {
     mode: 'production',
     entry: {
         index: './src/index/index.js',
-        playsong: './src/playlist/index.js',
+        playlist: './src/playlist/index.js',
         admin: './src/admin/index.js',
         song: './src/song/index.js'
     },
