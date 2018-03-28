@@ -4,6 +4,7 @@ import './js/tab-nav'
 import './js/main-content'
 import './js/remd-lists'
 import './js/new-songs'
+import './js/hot-songs'
 
 import './css/reboot.css'
 import './css/main.css'

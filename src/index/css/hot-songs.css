@@ -15,7 +15,7 @@
     background: url('//s3.music.126.net/m/s/img/index_icon_2x.png') no-repeat;
     background-size: 1.66rem .97rem;
     background-position: -.24rem -.3rem;
-    z-index: 10;
+    z-index: 1;
 }
 
 .hot-songs-header .update-time {
