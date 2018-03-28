@@ -1,8 +1,9 @@
 import './js/core/init-av'
 
-import './js/new-songs'
 import './js/tab-nav'
 import './js/main-content'
+import './js/remd-lists'
+import './js/new-songs'
 
 import './css/reboot.css'
 import './css/main.css'
