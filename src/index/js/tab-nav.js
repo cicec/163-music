@@ -42,3 +42,4 @@ const controller = new Controller({
 })
 
 controller.init()
+controller.bindEvents()

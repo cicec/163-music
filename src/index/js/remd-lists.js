@@ -40,12 +40,8 @@ const view = new View({
     }
 })
 
-const controller = new Controller({
-    model,
-    view,
-    bindEvents() {
+const controller = new Controller({ model, view })
 
-    }
+controller.init().then(() => {
+    controller.bindEvents()
 })
-
-model.init().then(() => { controller.init() })

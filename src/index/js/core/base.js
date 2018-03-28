@@ -39,8 +39,7 @@ class Controller {
 
     init() {
         this.model.addListener((data) => { this.view.render(data) })
-        this.bindEvents()
-        this.model.init()
+        return this.model.init()
     }
 }
 
