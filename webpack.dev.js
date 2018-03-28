@@ -11,6 +11,11 @@ module.exports = {
             'webpack/hot/only-dev-server',
             './index/index.js',
         ],
+        playlist: [
+            'webpack-dev-server/client?http://localhost:8080/playlist.html',
+            'webpack/hot/only-dev-server',
+            './playlist/index.js',
+        ],
         song: [
             'webpack-dev-server/client?http://localhost:8080/song.html',
             'webpack/hot/only-dev-server',
@@ -63,6 +68,12 @@ module.exports = {
             filename: 'index.html',
             template: './index/index.html',
             chunks: ['index'],
+        }),
+        new HtmlWebpackPlugin({
+            path: 'dist',
+            filename: 'playlist.html',
+            template: './playlist/index.html',
+            chunks: ['playlist'],
         }),
         new HtmlWebpackPlugin({
             path: 'dist',

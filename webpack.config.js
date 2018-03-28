@@ -5,6 +5,7 @@ module.exports = {
     mode: 'production',
     entry: {
         index: './src/index/index.js',
+        playsong: './src/playlist/index.js',
         admin: './src/admin/index.js',
         song: './src/song/index.js'
     },
@@ -40,6 +41,12 @@ module.exports = {
             filename: 'index.html',
             template: './src/index/index.html',
             chunks: ['index'],
+        }),
+        new HtmlWebpackPlugin({
+            path: 'dist',
+            filename: 'playlist.html',
+            template: './src/playlist/index.html',
+            chunks: ['playlist'],
         }),
         new HtmlWebpackPlugin({
             path: 'dist',
