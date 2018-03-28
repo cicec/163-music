@@ -9,7 +9,47 @@
 </head>
 
 <body>
-    歌单页面
+    <header>
+        <div class="header-bg">
+            <img src="http://p1.music.126.net/SkSbPkRFdzTG4sdFwNH_VA==/18876415626222110.webp?imageView&thumbnail=253x0&quality=75&tostatic=0&type=webp" alt="">
+        </div>
+        <div class="header-top">
+            <div class="cover">
+                <span class="play-number">29万</span>
+                <img src="http://p1.music.126.net/SkSbPkRFdzTG4sdFwNH_VA==/18876415626222110.webp?imageView&thumbnail=253x0&quality=75&tostatic=0&type=webp" alt="">
+            </div>
+            <div class="list-info">
+                <h1>『古风』江南雨巷油伞渡</h1>
+                <p>悠然隨風似浮雲</p>
+            </div>
+        </div>
+        <div class="list-intro">
+            <p class="tags">
+                标签：
+                <span>华语</span>
+                <span>古风</span>
+                <span>优美</span>
+            </p>
+            <p class="intro">简介：<span>一衣一纸伞，便孤渡江南，细雨微蒙。古巷酒香不知何处飘。</span></p>
+        </div>
+    </header>
+
+    <main>
+        <section class="songs-list">
+            <ul>
+                <li id="{{ id }}">
+                    <a href="./song.html?id={{ id }}">
+                        <div class="rank {{ isHottest }}">{{ rank }}</div>
+                        <div class="song-info">
+                            <h4>{{ name }}</h4>
+                            <span class="song-info">{{ singer }} - {{ name }}</span>
+                        </div>
+                        <span class="play-icon sprite"></span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+    </main>
 </body>
 
 </html>

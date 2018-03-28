@@ -6,3 +6,180 @@ body {
     font: .14rem/1.5 Helvetica, sans-serif;
     color: #333;
 }
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+h2,
+h4,
+p,
+a {
+    margin: 0;
+}
+
+a {
+    color: #333333;
+}
+
+a:hover,
+a:active,
+a:visited,
+a:focus {
+    color: #333333;
+    text-decoration: none;
+}
+
+.sprite{
+    background: url('//s3.music.126.net/m/s/img/index_icon_2x.png') no-repeat;
+    background-size: 166px 97px;
+}
+
+header {
+    position: relative;
+}
+
+.header-bg {
+    position: absolute;
+    top: -32%;
+    left: 0;
+    filter: blur(20px);
+    transform: scale(1.5);
+    z-index: -10;
+}
+
+.header-bg>img {
+    width: 100vw;
+}
+
+.header-top {
+    padding: .3rem .1rem .3rem .15rem;
+    display: flex;
+}
+
+.header-top .cover {
+    position: relative;
+}
+
+.header-top .cover::after {
+    content: '歌单';
+    position: absolute;
+    top: .1rem;;
+    left: 0;
+    color: #ffffff;
+    font-size: .09rem;
+    padding: 0 .08rem;
+    height: .17rem;
+    line-height: .17rem;
+    background: rgba(217,48,48,.8);
+    border-top-right-radius: .17rem;
+    border-bottom-right-radius: .17rem;
+}
+
+.header-top .cover .play-number {
+    position: absolute;
+    top: 0;
+    right: .02rem;
+    color: #ffffff;
+    font-size: .12rem;
+}
+
+.header-top .cover>img {
+    width: 1.26rem;
+    height: 1.26rem;
+}
+
+.header-top .list-info {
+    flex: 1 1 auto;
+    margin-left: .16rem;
+}
+
+.header-top .list-info>h1 {
+    color: #fefefe;
+    font-size: .17rem;
+    font-weight: normal;
+    line-height: .44rem;
+    height: .44rem;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.header-top .list-info>p {
+    color: hsla(0,0%,100%,.7);
+    flex: 1 1 auto;
+    margin-top: .2rem;
+}
+
+.list-intro {
+    color: #666666;
+    background: #f8f8f8;
+    padding: .1rem .1rem 0 .15rem;
+    font-size: .14rem;
+}
+
+.list-intro .tags>span {
+    font-size: .12rem;
+    padding: 3px 8px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-right: .1rem;
+}
+
+.list-intro .intro {
+    padding: .1rem 0 .2rem;
+}
+
+.songs-list {
+    background: #f8f8f8;
+}
+
+.songs-list::before {
+    content: '歌曲列表';
+    color: #666666;
+    background: #eeeff0;
+    display: block;
+    padding: 0 .1rem;
+}
+
+.songs-list>ul>li {
+    margin: 0 .1rem;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, .05);
+}
+
+.songs-list>ul>li>a {
+    display: flex;
+    align-items: center;
+}
+
+.songs-list>ul>li>a .rank {
+    flex: 0 0 .28rem;
+    color: #999999;
+    font-size: .17rem;
+}
+
+.songs-list>ul>li>a .rank.hottest {
+    color: #df3436;
+}
+
+.songs-list>ul>li>a .song-info {
+    flex: 1;
+}
+
+.songs-list>ul>li>a .song-info>h4 {
+    font-size: .17rem;
+    font-weight: normal;
+}
+
+.songs-list>ul>li>a .song-info>span {
+    color: #888888;
+    font-size: .12rem;
+}
+
+.songs-list>ul>li>a .play-icon {
+    width: .22rem;
+    height: .22rem;
+    background-position: -.24rem 0;
+}
