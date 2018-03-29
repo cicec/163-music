@@ -1,10 +1,10 @@
-.search-songs {
+.search-songs-form {
     padding: .15rem .1rem;
     position: relative;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-.search-songs .icon-search {
+.search-songs-form .icon-search {
     position: absolute;
     color: #c9c9c9;
     top: 50%;
@@ -13,7 +13,7 @@
     font-size: .13rem;
 }
 
-.search-songs>input {
+.search-songs-form>input {
     width: 100%;
     height: .3rem;
     line-height: .18rem;
@@ -26,7 +26,7 @@
     padding: 0 .3rem;
 }
 
-.search-songs>input::placeholder {
+.search-songs-form>input::placeholder {
     color: #c9c9c9;
 }
 
@@ -34,7 +34,7 @@
     padding: 8px 0 4px;
 }
 
-.search-songs-result>h4 {
+.search-songs-result .success>h4 {
     font-weight: normal;
     color: #666666;
     font-size: .12rem;

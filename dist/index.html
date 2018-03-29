@@ -59,25 +59,18 @@
         </div>
 
         <div id="search-songs">
-            <form class="search-songs" action="">
+            <form id="search-songs-form" class="search-songs-form" action="">
                 <svg class="icon icon-search" aria-hidden="true">
                     <use xlink:href="#icon-search1"></use>
                 </svg>
                 <input type="text" placeholder="搜索歌曲">
             </form>
-            <div class="search-songs-result">
-                <h4>最佳匹配</h4>
-                <ul class="search-songs-list" id="search-songs-list">
-                    <li id="{{ id }}">
-                        <a href="./song.html?id={{ id }}">
-                            <div class="song-info">
-                                <h4>{{ name }}</h4>
-                                <span class="song-info">{{ singer }} - {{ name }}</span>
-                            </div>
-                            <span class="play-icon sprite"></span>
-                        </a>
-                    </li>
-                </ul>
+            <div class="search-songs-result" id="search-songs-result">
+                <div id="success" class="success">
+                    <h4>最佳匹配</h4>
+                    <ul class="search-songs-list" id="search-songs-list"></ul>
+                </div>
+                <div id="fail" class="fail">暂无搜索结果</div>
             </div>
         </div>
 
