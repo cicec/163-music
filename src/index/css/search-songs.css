@@ -69,3 +69,8 @@
     height: .22rem;
     background-position: -.24rem 0;
 }
+
+.search-songs-result .fail {
+    padding: .2rem 0;
+    text-align: center;
+}
