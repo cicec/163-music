@@ -106,7 +106,7 @@
     margin-top: .04rem;
     padding-top: .64rem;
     background: url('http://s3.music.126.net/m/s/img/recommand_bg_2x.png') no-repeat;
-    background-size: contain;
+    background-size: cover;
 }
 
 .remd-songs-footer .logo {

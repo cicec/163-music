@@ -1,7 +1,7 @@
 .hot-songs-header {
     height: 1.46rem;
     background: url('//s3.music.126.net/m/s/img/hot_music_bg_2x.jpg') no-repeat;
-    background-size: contain;
+    background-size: cover;
     padding-left: .2rem;
     display: flex;
     flex-direction: column;
